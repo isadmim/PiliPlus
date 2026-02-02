@@ -9,7 +9,7 @@
 -keep class io.flutter.plugin.** { *; }
 
 # 2. 您的应用包（替换为您实际的包名）
--keep class com.yourcompany.yourapp.** { *; }
+-keep class com.piliX.** { *; }
 
 # 3. Android 组件
 -keep public class * extends android.app.Activity
