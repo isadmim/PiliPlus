@@ -48,25 +48,25 @@ jobs:
             $FLUTTER_HOME/.pub-cache
             $FLUTTER_HOME/bin/cache
 
-- name: 仅为您手机生成签名配置
-  run: |
-    # 创建签名配置文件
-    echo "storeFile=upload-keystore.jks" > android/key.properties
-    echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/key.properties
-    echo "keyAlias=upload" >> android/key.properties
-    echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
-    
-    # 创建gradle.properties中的签名变量（用于build.gradle.kts读取）
-    echo "" >> android/gradle.properties
-    echo "# 自动生成的签名配置" >> android/gradle.properties
-    echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/gradle.properties
-    echo "keyAlias=upload" >> android/gradle.properties
-    echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/gradle.properties
-    
-    # 复制密钥文件
-    echo "${{ secrets.SIGN_KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
-    
-    echo "✅ 签名配置已生成"
+      - name: 仅为您手机生成签名配置
+        run: |
+          # 创建签名配置文件
+          echo "storeFile=upload-keystore.jks" > android/key.properties
+          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=upload" >> android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+          
+          # 创建gradle.properties中的签名变量（用于build.gradle.kts读取）
+          echo "" >> android/gradle.properties
+          echo "# 自动生成的签名配置" >> android/gradle.properties
+          echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" >> android/gradle.properties
+          echo "keyAlias=upload" >> android/gradle.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/gradle.properties
+          
+          # 复制密钥文件
+          echo "${{ secrets.SIGN_KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
+          
+          echo "✅ 签名配置已生成"
 
       - name: 获取应用版本
         id: version
