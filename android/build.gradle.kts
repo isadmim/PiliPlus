@@ -1,3 +1,16 @@
+buildTypes {
+    release {
+        isMinifyEnabled = true
+        isShrinkResources = true
+        
+        proguardFiles(
+            getDefaultProguardFile("proguard-android-optimize.txt"),
+            "proguard-rules.pro"  // 确保这里正确
+        )
+        
+        // 其他配置...
+    }
+}
 android {
     compileSdk = 33
     
